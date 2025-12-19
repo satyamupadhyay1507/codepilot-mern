@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 function Admin() {
-  const backendURL = "http://localhost:8000";
+  const backendURL = "https://YOUR-BACKEND.onrender.com";
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
