@@ -15,7 +15,7 @@ import {
 // import "@codesandbox/sandpack-react/dist/index.css";
 
 function App() {
-  const backendURL = "http://localhost:8000";
+  const backendURL = "https://codepilot-mern.onrender.com";
 
   const [projectName, setProjectName] = useState("");
   const [projects, setProjects] = useState([]);
@@ -110,10 +110,6 @@ function App() {
               >
                 Save
               </button>
-              <button type="button" class="btn btn-primary"
-        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-  Custom button
-</button>
 
             </div>
 

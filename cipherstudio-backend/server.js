@@ -7,6 +7,8 @@ const app = express();
 
 // ✅ Use Render / system port
 const PORT = process.env.PORT || 8000;
+mongoose.connect(process.env.MONGO_URI);
+
 
 // Middleware
 app.use(cors({
