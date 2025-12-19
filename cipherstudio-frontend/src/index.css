@@ -1,4 +1,5 @@
 body {
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +11,314 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+
+/* ===== HEADER NAVBAR ===== */
+.app-header {
+  height: 56px;
+  /* width: 100%; */
+  background-color: #4E3D42; /* dark blue */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Left side */
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.app-logo {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Right side */
+.header-right {
+  display: flex;
+  gap: 12px;
+}
+
+/* Header buttons */
+.header-btn {
+  background: transparent;
+  border: none;
+  color: #cbd5f5;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.header-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+
+/* Container spacing */
+.project-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+/* Project name input */
+.project-actions input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  font-size: 0.95rem;
+  outline: none;
+  min-width: 220px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.project-actions input:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+}
+
+.project-actions .btn-primary {
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+.project-actions .btn-primary:hover {
+  transform: translateY(-1px);
+}
+
+
+.project-actions .btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.footer {
+  display: flex;
+
+}
+
+
+
+/* ===== FOOTER ===== */
+.app-footer {
+  margin-top: 40px;
+  padding: 20px 30px;
+  background-color: #0f172a; /* dark navy */
+  color: #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Left section */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-logo {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.footer-text {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+/* Right section (links) */
+.footer-right {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-right a {
+  color: #c7d2fe;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footer-right a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .app-footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .footer-right {
+    justify-content: center;
+  }
+}
+
+
+
+/* ===== ADMIN DASHBOARD ===== */
+.admin-container {
+  padding: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.admin-container h1 {
+  margin-bottom: 4px;
+}
+
+.admin-subtitle {
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-card {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.admin-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-card-header h3 {
+  margin: 0;
+}
+
+.admin-delete-btn {
+  background: #ef4444;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.admin-delete-btn:hover {
+  background: #dc2626;
+}
+
+.admin-code {
+  margin-top: 12px;
+  background: #0f172a;
+  color: #e5e7eb;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  overflow-x: auto;
+}
+
+
+
+
+/* ===== SAVED PROJECTS SECTION ===== */
+
+.projects-section {
+  margin-top: 30px;
+}
+
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.project-count {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.project-card {
+  background: #ffffff;
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+.project-info h5 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+.project-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btn-load {
+  background: #2563eb;
+  color: white;
+}
+
+.btn-load:hover {
+  background: #1d4ed8;
+}
+
+.btn-delete {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+}
+
+.empty-text {
+  color: #6b7280;
+  margin-top: 10px;
 }

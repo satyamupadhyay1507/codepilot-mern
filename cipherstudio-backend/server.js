@@ -4,9 +4,11 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const app = express();
-const PORT = 8000;
 
-// Middleware — Allow all origins
+// ✅ Use Render / system port
+const PORT = process.env.PORT || 8000;
+
+// Middleware
 app.use(cors({
   origin: "*",
   methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
@@ -14,38 +16,36 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 
-// Connect to MongoDB
+// ✅ Connect to MongoDB Atlas using ENV
 mongoose
-  .connect("mongodb://127.0.0.1:27017/cipherstudio", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("MongoDB connection failed:", err));
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ Connected to MongoDB"))
+  .catch((err) => console.error("❌ MongoDB connection failed:", err));
 
-// Define schema & model
+// Schema & Model
 const projectSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   files: { type: Object, default: {} },
 });
+
 const Project = mongoose.model("Project", projectSchema);
 
-// Routes
+// Health check route
 app.get("/", (req, res) => {
-  res.send("CipherStudio backend is running ");
+  res.send("CipherStudio backend is running 🚀");
 });
 
-// Get all projects
+// Get all project names
 app.get("/api/projects", async (req, res) => {
   try {
-    const projects = await Project.find({}, "name"); // only send project names
+    const projects = await Project.find({}, "name");
     res.json(projects);
   } catch (err) {
-    res.status(500).json({ message: "Error fetching projects", error: err.message });
+    res.status(500).json({ message: "Error fetching projects" });
   }
 });
 
-// Get a single project by name
+// Get single project
 app.get("/api/projects/:name", async (req, res) => {
   try {
     const project = await Project.findOne({ name: req.params.name });
@@ -54,18 +54,21 @@ app.get("/api/projects/:name", async (req, res) => {
     }
     res.json(project);
   } catch (err) {
-    res.status(500).json({ message: "Error fetching project", error: err.message });
+    res.status(500).json({ message: "Error fetching project" });
   }
 });
 
-// Save new project
+// Save project
 app.post("/api/projects", async (req, res) => {
   const { name, code } = req.body;
   try {
-    await Project.create({ name, files: { "/App.js": code } });
+    await Project.create({
+      name,
+      files: { "/App.js": code },
+    });
     res.status(201).json({ message: "Project saved successfully!" });
   } catch (err) {
-    res.status(400).json({ message: "Failed to save project", error: err.message });
+    res.status(400).json({ message: err.message });
   }
 });
 
@@ -75,11 +78,11 @@ app.delete("/api/projects/:name", async (req, res) => {
     await Project.deleteOne({ name: req.params.name });
     res.json({ message: "Project deleted!" });
   } catch (err) {
-    res.status(500).json({ message: "Failed to delete project", error: err.message });
+    res.status(500).json({ message: "Delete failed" });
   }
 });
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
