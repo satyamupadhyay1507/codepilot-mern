@@ -5,12 +5,12 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-// ✅ Use Render / system port
+
 const PORT = process.env.PORT || 8000;
 mongoose.connect(process.env.MONGO_URI);
 
 
-// Middleware
+
 app.use(cors({
   origin: "*",
   methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
@@ -18,13 +18,11 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 
-// ✅ Connect to MongoDB Atlas using ENV
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch((err) => console.error("❌ MongoDB connection failed:", err));
 
-// Schema & Model
 const projectSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   files: { type: Object, default: {} },
@@ -32,12 +30,12 @@ const projectSchema = new mongoose.Schema({
 
 const Project = mongoose.model("Project", projectSchema);
 
-// Health check route
+
 app.get("/", (req, res) => {
   res.send("CipherStudio backend is running 🚀");
 });
 
-// Get all project names
+
 app.get("/api/projects", async (req, res) => {
   try {
     const projects = await Project.find({}, "name");
@@ -47,7 +45,7 @@ app.get("/api/projects", async (req, res) => {
   }
 });
 
-// Get single project
+
 app.get("/api/projects/:name", async (req, res) => {
   try {
     const project = await Project.findOne({ name: req.params.name });
